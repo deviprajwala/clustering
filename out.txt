@@ -1,0 +1,29 @@
+Enter number of students
+Enter the details of students:
+Enter the details of 3 study centres:
+
+-------------------------------------------------------------
+a  1  1  1
+b  2  2  2
+c  3  3  3
+d  4  4  4
+e  5  5  5
+
+-------------------------------------------------------------
+f  6  6
+g  7  7
+h  8  8
+
+-------------------------------------------------------------
+First iteration
+a   h  8  8
+b   h  8  8
+c   h  8  8
+d   h  8  8
+e   h  8  8
+second iteration
+a   h  3  3
+b   h  3  3
+c   h  3  3
+d   h  3  3
+e   h  3  3
