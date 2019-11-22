@@ -6,14 +6,14 @@ struct student
 {
   char name[25]; //name of the student
   int id;        //id of the student
-  float x_val;     //x co-ordinate student's location
-  float y_val;     //y co-ordinate student's location
-  float distance;
+  int x_val;     //x co-ordinate of student's location
+  int y_val;     //y co-ordinate of student's location
+  int distance;
   struct student *link;
   char cluster_name[25];
   int cluster_id;
-  float cluster_x;
-  float cluster_y;
+  int cluster_x;
+  int cluster_y;
 };
 typedef struct student *student;
 
@@ -22,8 +22,8 @@ struct study_centre
 {
   char name[25]; //name of the study centre
   int id;        //id of the study centre
-  float x;         //x co-ordinate study centre's location
-  float y;        //y co-ordinate study centre's location
+  int x;         //x co-ordinate of study centre's location
+  int y;        //y co-ordinate of study centre's location
   struct study_centre *centre_link;
 };
 typedef struct study_centre *study;
@@ -40,13 +40,13 @@ void input_centre(int n,study centre_head);
 void display(student head);
 void display_centre(study centre_head);
 void allocation(student head,study centre_head);
-int minimum(float a,float b,float c);
+int minimum(int a,int b,int c);
 void allotment(student head);
 void centroid_mean(student head,study centre_head);
 int mean_calculation(int a[25],int n);
 void print_info(student head);
 
-student get_student()
+student get_student()  //structure for the student
 {
  student x;
  x=(student)malloc(sizeof(struct student));
@@ -54,7 +54,7 @@ student get_student()
  return x;
 }
 
-study get_study()
+study get_study()//structure for the study centre
 {
  study x;
  x=(study)malloc(sizeof(struct study_centre));
@@ -62,7 +62,7 @@ study get_study()
  return x;
 }
 
-int distance(int centre_x,int centre_y,int student_x,int student_y)
+int distance(int centre_x,int centre_y,int student_x,int student_y)//function to calculate distance between two points
 {
  int d;
  d=sqrt(((centre_x-student_x)*(centre_x-student_x))-((centre_y-student_y)*(centre_y-student_y)));
@@ -70,7 +70,7 @@ int distance(int centre_x,int centre_y,int student_x,int student_y)
 
 }
 
-void input_student(int n,student head)
+void input_student(int n,student head)//function to take the details of students as input and store it in the linked list
 {
  int i,x,y,id;
  student temp,cur,prev;
@@ -84,10 +84,10 @@ void input_student(int n,student head)
    scanf("%d",&id);
    temp->id=id;
    //printf("x location:");
-   scanf("%f",&x);
+   scanf("%d",&x);
    temp->x_val=x;
    //printf("y location:");
-   scanf("%f",&y);
+   scanf("%d",&y);
    temp->y_val=y;
    
    if(head->link==NULL)
@@ -109,7 +109,7 @@ void input_student(int n,student head)
  }
 }
 
-void input_centre(int n,study centre_head)
+void input_centre(int n,study centre_head)//function to take the details of students as input and store it in the linked list
 {
  int i,x,y;
  study temp,cur,prev;
@@ -122,9 +122,9 @@ void input_centre(int n,study centre_head)
    //printf("Id:");
    scanf("%d",&temp->id);
    //printf("x location:");
-   scanf("%f",&temp->x);
+   scanf("%d",&temp->x);
    //printf("y location:");
-   scanf("%f",&temp->y);
+   scanf("%d",&temp->y);
    
    if(centre_head->centre_link==NULL)
    {
@@ -145,7 +145,7 @@ void input_centre(int n,study centre_head)
  }
 }
 
-void display(student head)
+void display(student head)//function to display the details of students
 {
  student cur,prev;
  cur=head->link;
@@ -154,14 +154,14 @@ void display(student head)
  {
   printf("%s  ",cur->name);
   printf("%d  ",cur->id);
-  printf("%f  ",cur->x_val);
-  printf("%f\n",cur->y_val);
+  printf("%d  ",cur->x_val);
+  printf("%d\n",cur->y_val);
   prev=cur;
   cur=cur->link;
   
  }
 }
-void display_centre(study centre_head)
+void display_centre(study centre_head)//function to display the details of study centre
 {
  study cur,prev;
  cur=centre_head->centre_link;
@@ -170,15 +170,15 @@ void display_centre(study centre_head)
  {
   printf("%s  ",cur->name);
   printf("%d  ",cur->id);
-  printf("%f  ",cur->x);
-  printf("%f\n",cur->y);
+  printf("%d  ",cur->x);
+  printf("%d\n",cur->y);
   prev=cur;
   cur=cur->centre_link;
   
  }
 }
 
-void allocation(student head,study centre_head)
+void allocation(student head,study centre_head)//function in which students are allocated to a particular study centre based on nearest distance
 {
  float d1,d2,d3,least_distance;
  student stu_cur,stu_prev;
@@ -192,18 +192,22 @@ void allocation(student head,study centre_head)
   centre_cur=centre_head->centre_link;
   centre_prev=NULL;
   d1=distance(centre_cur->x,centre_cur->y,stu_cur->x_val,stu_cur->y_val);
+  //distance between the student and first study centre
+
 
   centre_prev=centre_cur;
   centre_cur=centre_cur->centre_link;
   d2=distance(centre_cur->x,centre_cur->y,stu_cur->x_val,stu_cur->y_val);
-   
+  //distance between the student and second study centre
+ 
   centre_prev=centre_cur;
   centre_cur=centre_cur->centre_link;
   d3=distance(centre_cur->x,centre_cur->y,stu_cur->x_val,stu_cur->y_val);
-  
-  least_distance=minimum(d1,d2,d3);
+  //distance between the student and third study centre
 
-  if(least_distance==d3)
+  least_distance=minimum(d1,d2,d3);//least distance is calculated
+
+  if(least_distance==d3)// if least distance is d3 then student is allocated to 3rd study centre
   {
    strcpy(stu_cur->cluster_name,centre_cur->name);
    stu_cur->cluster_x=centre_cur->x;
@@ -212,7 +216,7 @@ void allocation(student head,study centre_head)
    stu_cur->distance=d3;
   }
 
-  else if(least_distance==d2)
+  else if(least_distance==d2)// if least distance is d2 then student is allocated to 2nd study centre
   {
    strcpy(stu_cur->cluster_name,centre_prev->name);
    stu_cur->cluster_x=centre_prev->x;
@@ -222,7 +226,7 @@ void allocation(student head,study centre_head)
   }
 
 
-  else if(least_distance==d1)
+  else if(least_distance==d1)// if least distance is d1 then student is allocated to 1st study centre
   {
    centre_cur=centre_head->centre_link;
    strcpy(stu_cur->cluster_name,centre_cur->name);
@@ -238,7 +242,7 @@ void allocation(student head,study centre_head)
   
 }
 
-int minimum(float a,float b,float c)
+int minimum(int a,int b,int c)//function to calculate the smallest number among three numbers
 {
  if((a<b)&&(a<c))
  {
@@ -254,20 +258,20 @@ int minimum(float a,float b,float c)
  }
 }
 
-void allotment(student head)
+void allotment(student head)//function to display the allocated study centre fo the students along with x and y co-ordinates
 {
   int i;
   student cur,prev;
   cur=head->link;
   while(cur!=NULL)
   {
-    printf("%s   %s  %f  %f\n",cur->name,cur->cluster_name,cur->cluster_x,cur->cluster_y);
+    printf("%s   %s  %d  %d\n",cur->name,cur->cluster_name,cur->cluster_x,cur->cluster_y);
     prev=cur;
     cur=cur->link;
   }
 }
 
-void centroid_mean(student head,study centre_head)
+void centroid_mean(student head,study centre_head)//function to change the actual value of the co-ordinates of the centroid to the mean value after allotment of students
 {
   float x_mean,y_mean;
   study centre_cur,centre_prev;
@@ -285,8 +289,8 @@ void centroid_mean(student head,study centre_head)
 
        if(centre_cur->id==stu_cur->cluster_id)
         {
-          x_cluster[x_num]=stu_cur->x_val;
-          y_cluster[y_num]=stu_cur->y_val;
+          x_cluster[x_num]=stu_cur->x_val;//each value of x is stored in array
+          y_cluster[y_num]=stu_cur->y_val;//each value of y is stored in array
           x_num++;
           y_num++;
         }
@@ -305,7 +309,7 @@ void centroid_mean(student head,study centre_head)
   }
 }
 
-int mean_calculation(int a[25],int n)
+int mean_calculation(int a[25],int n)//function to calculate the mean value for x and y of the centroids
 {
  int i,sum=0,result;
  for(i=0;i<n;i++)
@@ -327,9 +331,9 @@ void print_info(student head)
   stu_cur=head->link;
   while(stu_cur!=NULL)
   {
-   printf("%s   %d   %f   ",stu_cur->name,stu_cur->id,stu_cur->x_val);
-   printf("%f     %f     %s    ",stu_cur->y_val,stu_cur->distance,stu_cur->cluster_name);
-   printf("%d   %f   %f\n",stu_cur->cluster_id,stu_cur->cluster_x,stu_cur->cluster_y);
+   printf("%s   %d   %d   ",stu_cur->name,stu_cur->id,stu_cur->x_val);
+   printf("%d     %d     %s    ",stu_cur->y_val,stu_cur->distance,stu_cur->cluster_name);
+   printf("%d   %d   %d\n",stu_cur->cluster_id,stu_cur->cluster_x,stu_cur->cluster_y);
    stu_cur=stu_cur->link;
   }
 
@@ -357,9 +361,9 @@ int main()
  allotment(head);
  centroid_mean(head,centre_head);
  allocation(head,centre_head);
- printf("second iteration\n");
- allotment(head);
- print_info(head);
+ //printf("second iteration\n");
+ //allotment(head);
+ //print_info(head);
 return (0);
 }
 
