@@ -1,0 +1,58 @@
+Enter number of students
+Enter the details of students:
+Enter the details of 3 study centres:
+
+-------------------------------------------------------------
+a  1  1  1
+b  2  3  2
+c  3  2  3
+d  4  4  2
+e  5  6  3
+f  6  6  6
+g  7  7  5
+h  8  8  4
+i  9  10  10
+j  10  11  9
+
+-------------------------------------------------------------
+x  100  2  1
+y  101  6  5
+z  102  8  8
+
+-------------------------------------------------------------
+First iteration
+a   x  2  1
+b   x  2  1
+c   x  2  1
+d   x  2  1
+e   y  6  5
+f   y  6  5
+g   y  6  5
+h   y  6  5
+i   z  8  8
+j   z  8  8
+after 1 iteration
+a   z  5  4
+b   z  5  4
+c   z  5  4
+d   z  5  4
+e   z  5  4
+f   z  5  4
+g   z  5  4
+h   z  5  4
+i   z  5  4
+j   z  5  4
+
+-------------------------------------------------
+               student information                   
+NAME   ID   STU_X   STU_Y  DISTANCE CENTRE NAME CENTRE ID CENTRE_X CENTRE_Y
+a        1        1       1        5        z       102      5      4
+b        2        3       2        2        z       102      5      4
+c        3        2       3        3        z       102      5      4
+d        4        4       2        2        z       102      5      4
+e        5        6       3        1        z       102      5      4
+f        6        6       6        2        z       102      5      4
+g        7        7       5        2        z       102      5      4
+h        8        8       4        3        z       102      5      4
+i        9        10       10        7        z       102      5      4
+j        10        11       9        7        z       102      5      4

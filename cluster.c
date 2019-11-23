@@ -64,8 +64,10 @@ study get_study()//structure for the study centre
 
 int distance(int centre_x,int centre_y,int student_x,int student_y)//function to calculate distance between two points
 {
- int d;
- d=sqrt(((centre_x-student_x)*(centre_x-student_x))-((centre_y-student_y)*(centre_y-student_y)));
+ int d,x,y;
+ x=centre_x-student_x;
+ y=centre_y-student_y;
+ d=sqrt((x*x)+(y*y));
  return d;
 
 }
@@ -331,16 +333,16 @@ void print_info(student head)
   stu_cur=head->link;
   while(stu_cur!=NULL)
   {
-   printf("%s   %d   %d   ",stu_cur->name,stu_cur->id,stu_cur->x_val);
-   printf("%d     %d     %s    ",stu_cur->y_val,stu_cur->distance,stu_cur->cluster_name);
-   printf("%d   %d   %d\n",stu_cur->cluster_id,stu_cur->cluster_x,stu_cur->cluster_y);
+   printf("%s        %d        %d       ",stu_cur->name,stu_cur->id,stu_cur->x_val);
+   printf("%d        %d        %s       ",stu_cur->y_val,stu_cur->distance,stu_cur->cluster_name);
+   printf("%d      %d      %d\n",stu_cur->cluster_id,stu_cur->cluster_x,stu_cur->cluster_y);
    stu_cur=stu_cur->link;
   }
 
 }
 int main()
 {
- int n;
+ int n,i;
  student head;
  head=get_student();
  study centre_head;
@@ -359,11 +361,15 @@ int main()
  allocation(head,centre_head);
  printf("First iteration\n");
  allotment(head);
+ allocation(head,centre_head);
+ printf("after 1 iteration\n");
+ //for(i=1;i<=2;i++)
+ {
  centroid_mean(head,centre_head);
  allocation(head,centre_head);
- //printf("second iteration\n");
- //allotment(head);
- //print_info(head);
+ }
+ allotment(head);
+ print_info(head);
 return (0);
 }
 
