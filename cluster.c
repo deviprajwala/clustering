@@ -149,6 +149,7 @@ void input_centre(int n,study centre_head)//function to take the details of stud
 
 void display(student head)//function to display the details of students
 {
+ printf("\nSTUDENT INFORMATION\n");
  student cur,prev;
  cur=head->link;
  prev=NULL;
@@ -165,6 +166,7 @@ void display(student head)//function to display the details of students
 }
 void display_centre(study centre_head)//function to display the details of study centre
 {
+ printf("\nSTUDY CENTRE INFORMATION\n");
  study cur,prev;
  cur=centre_head->centre_link;
  prev=NULL;
@@ -223,7 +225,7 @@ void allocation(student head,study centre_head)//function in which students are 
    strcpy(stu_cur->cluster_name,centre_prev->name);
    stu_cur->cluster_x=centre_prev->x;
    stu_cur->cluster_y=centre_prev->y;
-   stu_cur->cluster_id=centre_cur->id;
+   stu_cur->cluster_id=centre_prev->id;
    stu_cur->distance=d2;
   }
 
@@ -275,7 +277,7 @@ void allotment(student head)//function to display the allocated study centre fo 
 
 void centroid_mean(student head,study centre_head)//function to change the actual value of the co-ordinates of the centroid to the mean value after allotment of students
 {
-  float x_mean,y_mean;
+  int x_mean,y_mean;
   study centre_cur,centre_prev;
   student stu_cur,stu_prev;
   
@@ -296,16 +298,20 @@ void centroid_mean(student head,study centre_head)//function to change the actua
           x_num++;
           y_num++;
         }
-       
-       x_mean=mean_calculation(x_cluster,x_num);
-       y_mean=mean_calculation(y_cluster,y_num);
-       
-       centre_cur->x=x_mean;
-       centre_cur->y=y_mean;
-
        //stu_prev=stu_cur;
        stu_cur=stu_cur->link;
      }
+     x_mean=mean_calculation(x_cluster,x_num);
+     y_mean=mean_calculation(y_cluster,y_num);
+       
+     centre_cur->x=x_mean;
+     centre_cur->y=y_mean;
+     x_mean=0;
+     y_mean=0;
+     x_cluster[x_num]=0;
+     y_cluster[y_num]=0;
+     x_num=0;
+     y_num=0;
      //centre_prev=centre_cur;
      centre_cur=centre_cur->centre_link;
   }
@@ -358,17 +364,18 @@ int main()
  printf("\n-------------------------------------------------------------\n");
  display_centre(centre_head);
  printf("\n-------------------------------------------------------------\n");
- allocation(head,centre_head);
+
  printf("First iteration\n");
- allotment(head);
  allocation(head,centre_head);
- printf("after 1 iteration\n");
- //for(i=1;i<=2;i++)
- {
+ allotment(head);
+ 
+for(i=2;i<=3;i++)
+{
+ printf("after %d iteration\n",i); 
  centroid_mean(head,centre_head);
- allocation(head,centre_head);
- }
+ allocation(head,centre_head); 
  allotment(head);
+}
  print_info(head);
 return (0);
 }
