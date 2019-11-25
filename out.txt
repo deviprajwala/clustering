@@ -5,49 +5,30 @@ Enter the details of 3 study centres:
 -------------------------------------------------------------
 
 STUDENT INFORMATION
-a  1  1  1
-b  2  2  1
-c  3  1  2
-d  4  3  4
-e  5  4  3
-f  6  7  7
+RAMU  1  1  1
+SHAM  2  2  1
+SITA  3  1  2
+GITA  4  3  4
+MITA  5  4  3
+RAJU  6  7  7
 
 -------------------------------------------------------------
 
 STUDY CENTRE INFORMATION
-x  10  2  2
-y  11  4  4
-z  12  6  7
+STUDY_CENTRE-1  10  2  2
+STUDY_CENTRE-2  11  4  4
+STUDY_CENTRE-3  12  6  7
 
 -------------------------------------------------------------
-First iteration
-a   x  2  2
-b   x  2  2
-c   x  2  2
-d   y  4  4
-e   y  4  4
-f   z  6  7
-after 2 iteration
-a   x  1  1
-b   x  1  1
-c   x  1  1
-d   y  3  3
-e   y  3  3
-f   z  7  7
-after 3 iteration
-a   x  1  1
-b   x  1  1
-c   x  1  1
-d   y  3  3
-e   y  3  3
-f   z  7  7
+
+FINAL ALLOTMENT OF WITH COMPLETE DETAILS
 
 -------------------------------------------------
                student information                   
-NAME   ID   STU_X   STU_Y  DISTANCE CENTRE NAME CENTRE ID CENTRE_X CENTRE_Y
-a        1        1       1        0        x       10      1      1
-b        2        2       1        1        x       10      1      1
-c        3        1       2        1        x       10      1      1
-d        4        3       4        1        y       11      3      3
-e        5        4       3        1        y       11      3      3
-f        6        7       7        0        z       12      7      7
+NAME   ID   STU_X   STU_Y  DIST_FROM_CENTRE CENTRE NAME CENTRE ID CENTRE_X CENTRE_Y
+RAMU   1      1     1          0         STUDY_CENTRE-1    10      1       1
+SHAM   2      2     1          1         STUDY_CENTRE-1    10      1       1
+SITA   3      1     2          1         STUDY_CENTRE-1    10      1       1
+GITA   4      3     4          1         STUDY_CENTRE-2    11      3       3
+MITA   5      4     3          1         STUDY_CENTRE-2    11      3       3
+RAJU   6      7     7          0         STUDY_CENTRE-3    12      7       7

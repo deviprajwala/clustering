@@ -327,20 +327,21 @@ int mean_calculation(int a[25],int n)//function to calculate the mean value for 
  result=sum/n;
  return result;
 }
-void print_info(student head)
+
+void print_info(student head)//function to display the complete details of students along with complte details
 {
   student stu_cur;
   
   printf("\n-------------------------------------------------\n");
   printf("               student information                   \n");
-  printf("NAME   ID   STU_X   STU_Y  DISTANCE CENTRE NAME CENTRE ID CENTRE_X CENTRE_Y\n");
+  printf("NAME   ID   STU_X   STU_Y  DIST_FROM_CENTRE CENTRE NAME CENTRE ID CENTRE_X CENTRE_Y\n");
   
 
   stu_cur=head->link;
   while(stu_cur!=NULL)
   {
-   printf("%s        %d        %d       ",stu_cur->name,stu_cur->id,stu_cur->x_val);
-   printf("%d        %d        %s       ",stu_cur->y_val,stu_cur->distance,stu_cur->cluster_name);
+   printf("%s   %d      %d     ",stu_cur->name,stu_cur->id,stu_cur->x_val);
+   printf("%d          %d         %s    ",stu_cur->y_val,stu_cur->distance,stu_cur->cluster_name);
    printf("%d      %d      %d\n",stu_cur->cluster_id,stu_cur->cluster_x,stu_cur->cluster_y);
    stu_cur=stu_cur->link;
   }
@@ -353,29 +354,30 @@ int main()
  head=get_student();
  study centre_head;
  centre_head=get_study();
- printf("Enter number of students\n");
+ printf("Enter number of students\n");//input the number of students
  scanf("%d",&n);
- printf("Enter the details of students:\n");
+ printf("Enter the details of students:\n");//details of students is taken as input
  input_student(n,head);
- printf("Enter the details of 3 study centres:\n");
+ printf("Enter the details of 3 study centres:\n");//details of study centre is taken as input
  input_centre(3,centre_head);
  printf("\n-------------------------------------------------------------\n");
- display(head);
+ display(head);//display the details of students which was earlier taken as input
  printf("\n-------------------------------------------------------------\n");
- display_centre(centre_head);
+ display_centre(centre_head);//display the details of study centr which was earlier taken as input
  printf("\n-------------------------------------------------------------\n");
 
- printf("First iteration\n");
- allocation(head,centre_head);
- allotment(head);
+ //printf("First iteration\n");
+ allocation(head,centre_head);//allocation of study centre to students in the first round
+ //allotment(head);
  
-for(i=2;i<=3;i++)
+for(i=2;i<=10;i++)//recalculation of centroid and distance between students and thier study centre is calculated in 10 loops 
 {
- printf("after %d iteration\n",i); 
+ //printf("after %d iteration\n",i); 
  centroid_mean(head,centre_head);
  allocation(head,centre_head); 
- allotment(head);
+ //allotment(head);
 }
+ printf("\nFINAL ALLOTMENT OF WITH COMPLETE DETAILS\n");
  print_info(head);
 return (0);
 }
