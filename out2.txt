@@ -5,69 +5,38 @@ Enter the details of 3 study centres:
 -------------------------------------------------------------
 
 STUDENT INFORMATION
-a  1  1  1
-b  2  3  2
-c  3  2  3
-d  4  4  2
-e  5  6  3
-f  6  6  6
-g  7  7  5
-h  8  8  4
-i  9  10  10
-j  10  11  9
+aaaa  1  1  1
+bbbb  2  3  2
+cccc  3  2  3
+dddd  4  4  2
+eeee  5  6  3
+ffff  6  6  6
+gggg  7  7  5
+hhhh  8  8  4
+iiii  9  10  10
+jjjj  10  11  9
 
 -------------------------------------------------------------
 
 STUDY CENTRE INFORMATION
-x  100  2  1
-y  101  6  5
-z  102  8  8
+study_x  100  2  1
+study_y  101  6  5
+study_z  102  8  8
 
 -------------------------------------------------------------
-First iteration
-a   x  2  1
-b   x  2  1
-c   x  2  1
-d   x  2  1
-e   y  6  5
-f   y  6  5
-g   y  6  5
-h   y  6  5
-i   z  8  8
-j   z  8  8
-after 2 iteration
-a   x  2  2
-b   x  2  2
-c   x  2  2
-d   z  10  9
-e   y  6  4
-f   y  6  4
-g   y  6  4
-h   y  6  4
-i   z  10  9
-j   z  10  9
-after 3 iteration
-a   x  2  2
-b   x  2  2
-c   x  2  2
-d   z  8  7
-e   y  6  4
-f   z  8  7
-g   y  6  4
-h   y  6  4
-i   z  8  7
-j   z  8  7
+
+FINAL ALLOTMENT OF WITH COMPLETE DETAILS
 
 -------------------------------------------------
                student information                   
-NAME   ID   STU_X   STU_Y  DISTANCE CENTRE NAME CENTRE ID CENTRE_X CENTRE_Y
-a        1        1       1        1        x       100      2      2
-b        2        3       2        1        x       100      2      2
-c        3        2       3        1        x       100      2      2
-d        4        4       2        6        z       102      8      7
-e        5        6       3        1        y       101      6      4
-f        6        6       6        2        z       102      8      7
-g        7        7       5        1        y       101      6      4
-h        8        8       4        2        y       101      6      4
-i        9        10       10        3        z       102      8      7
-j        10        11       9        3        z       102      8      7
+NAME   ID   STU_X   STU_Y  DIST_FROM_CENTRE CENTRE NAME CENTRE ID CENTRE_X CENTRE_Y
+aaaa   1      1     1          1         study_x    100      2       2
+bbbb   2      3     2          1         study_x    100      2       2
+cccc   3      2     3          1         study_x    100      2       2
+dddd   4      4     2          2         study_x    100      2       2
+eeee   5      6     3          1         study_y    101      7       3
+ffff   6      6     6          2         study_z    102      8       7
+gggg   7      7     5          2         study_z    102      8       7
+hhhh   8      8     4          1         study_y    101      7       3
+iiii   9      10     10          3         study_z    102      8       7
+jjjj   10      11     9          3         study_z    102      8       7
